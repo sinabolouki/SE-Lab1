@@ -24,16 +24,13 @@ def clr():
 
 
 def callback(input):
-    if re.match('[\d\*\/\.\+\-]+', input):
-        print(input)
+    if re.match('^[\d\*\/\.\+\-\s]+$', input):
         return True
 
     elif input == "":
-        print(input)
         return True
 
     else:
-        print(input)
         return False
 
 
