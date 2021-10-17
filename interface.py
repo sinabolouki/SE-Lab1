@@ -1,4 +1,5 @@
 from tkinter import *
+import re
 
 expression = ""
 
@@ -22,6 +23,20 @@ def clr():
     equation.set("")
 
 
+def callback(input):
+    if re.match('[\d\*\/\.\+\-]+', input):
+        print(input)
+        return True
+
+    elif input == "":
+        print(input)
+        return True
+
+    else:
+        print(input)
+        return False
+
+
 gui = Tk()
 
 
@@ -29,8 +44,10 @@ gui.configure(background="white")
 gui.title("Calculator")
 gui.geometry("350x180")
 equation = StringVar()
+reg = gui.register(callback)
 expression_field = Entry(gui, textvariable=equation)
 expression_field.grid(columnspan=4, ipadx=70)
+expression_field.config(validate='key', validatecommand =(reg, '%P'))
 
 button1 = Button(gui, text=' 1 ', fg='black', bg='red', height=1, width=7
                  , command=lambda: press(1), highlightbackground='#3E4149')
