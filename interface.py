@@ -1,11 +1,36 @@
 from tkinter import *
 
+expression = ""
+
+
+def press(num):
+    global expression
+    expression = expression + str(num)
+    equation.set(expression)
+
+
+def equal_press():
+    global expression
+    total = str(eval(expression))
+    equation.set(total)
+    expression = ""
+
+
+def clr():
+    global expression
+    expression = ""
+    equation.set("")
+
+
 gui = Tk()
 
 
 gui.configure(background="white")
 gui.title("Calculator")
 gui.geometry("250x180")
+equation = StringVar()
+expression_field = Entry(gui, textvariable=equation)
+expression_field.grid(columnspan=4, ipadx=70)
 
 button1 = Button(gui, text=' 1 ', fg='black', bg='red', height=1, width=7)
 button1.grid(row=2, column=0)
